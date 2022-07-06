@@ -1,0 +1,396 @@
+\documentclass[11pt, one side, article]{memoir}
+
+
+\settrims{0pt}{0pt} % page and stock same size
+\settypeblocksize{*}{34.5pc}{*} % {height}{width}{ratio}
+\setlrmargins{*}{*}{1} % {spine}{edge}{ratio}
+\setulmarginsandblock{.98in}{.98in}{*} % height of typeblock computed
+\setheadfoot{\onelineskip}{2\onelineskip} % {headheight}{footskip}
+\setheaderspaces{*}{1.5\onelineskip}{*} % {headdrop}{headsep}{ratio}
+\checkandfixthelayout
+
+
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\usepackage[inline]{enumitem}
+\usepackage{ifthen}
+\usepackage[utf8]{inputenc} %allows non-ascii in bib file
+\usepackage{xcolor}
+
+\usepackage[backend=biber, backref=true, maxbibnames = 10, style = alphabetic]{biblatex}
+\usepackage[bookmarks=true, colorlinks=true, linkcolor=blue!50!black,
+citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperref}
+\usepackage[capitalize]{cleveref}
+
+\usepackage{tikz}
+
+\usepackage{amssymb}
+\usepackage{newpxtext}
+\usepackage[varg,bigdelims]{newpxmath}
+\usepackage{mathrsfs}
+\usepackage{dutchcal}
+\usepackage{fontawesome}
+
+
+
+% cleveref %
+  \newcommand{\creflastconjunction}{, and\nobreakspace} % serial comma
+  \crefformat{enumi}{\##2#1#3}
+  \crefalias{chapter}{section}
+
+
+% biblatex %
+  \addbibresource{Library20211112.bib} 
+
+% hyperref %
+  \hypersetup{final}
+
+% enumitem %
+  \setlist{nosep}
+  \setlistdepth{6}
+
+
+
+% tikz %
+
+
+
+  \usetikzlibrary{ 
+  	cd,
+  	math,
+  	decorations.markings,
+		decorations.pathreplacing,
+  	positioning,
+  	arrows.meta,
+  	shapes,
+		shadows,
+		shadings,
+  	calc,
+  	fit,
+  	quotes,
+  	intersections,
+    circuits,
+    circuits.ee.IEC
+  }
+  
+  \tikzset{
+biml/.tip={Glyph[glyph math command=triangleleft, glyph length=.95ex]},
+bimr/.tip={Glyph[glyph math command=triangleright, glyph length=.95ex]},
+}
+
+\tikzset{
+	tick/.style={postaction={
+  	decorate,
+    decoration={markings, mark=at position 0.5 with
+    	{\draw[-] (0,.4ex) -- (0,-.4ex);}}}
+  }
+} 
+\tikzset{
+	slash/.style={postaction={
+  	decorate,
+    decoration={markings, mark=at position 0.5 with
+    	{\draw[-] (.3ex,.3ex) -- (-.3ex,-.3ex);}}}
+  }
+} 
+
+\newcommand{\bito}[1][]{
+	\begin{tikzcd}[ampersand replacement=\&, cramped]\ar[r, biml-bimr, "#1"]\&~\end{tikzcd}  
+}
+\newcommand{\bifrom}[1][]{
+	\begin{tikzcd}[ampersand replacement=\&, cramped]\ar[r, bimr-biml, "{#1}"]\&~\end{tikzcd}  
+}
+\newcommand{\bifromlong}[2][]{
+	\begin{tikzcd}[ampersand replacement=\&, column sep=#2, cramped]\ar[r, bimr-biml, "#1"]\&~\end{tikzcd}  
+}
+
+% Adjunctions
+\newcommand{\adj}[5][30pt]{%[size] Cat L, Left, Right, Cat R.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, shift left=7pt, "#3"]
+  \ar[r, phantom, "\scriptstyle\Rightarrow"]\&
+  #5\ar[l, shift left=7pt, "#4"]
+\end{tikzcd}
+}
+
+\newcommand{\adjr}[5][30pt]{%[size] Cat R, Right, Left, Cat L.
+\begin{tikzcd}[ampersand replacement=\&, column sep=#1]
+  #2\ar[r, shift left=7pt, "#3"]\&
+  #5\ar[l, shift left=7pt, "#4"]
+  \ar[l, phantom, "\scriptstyle\Leftarrow"]
+\end{tikzcd}
+}
+
+\newcommand{\xtickar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
+replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
+\newcommand{\xslashar}[1]{\begin{tikzcd}[baseline=-0.5ex,cramped,sep=small,ampersand 
+replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
+
+
+
+  
+  % amsthm %
+\theoremstyle{definition}
+\newtheorem{definitionx}{Definition}[section]
+\newtheorem{examplex}[definitionx]{Example}
+\newtheorem{remarkx}[definitionx]{Remark}
+\newtheorem{notation}[definitionx]{Notation}
+
+
+\theoremstyle{plain}
+
+\newtheorem{theorem}[definitionx]{Theorem}
+\newtheorem{proposition}[definitionx]{Proposition}
+\newtheorem{corollary}[definitionx]{Corollary}
+\newtheorem{lemma}[definitionx]{Lemma}
+\newtheorem{warning}[definitionx]{Warning}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{proposition*}{Proposition}
+\newtheorem*{corollary*}{Corollary}
+\newtheorem*{lemma*}{Lemma}
+\newtheorem*{warning*}{Warning}
+%\theoremstyle{definition}
+%\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{construction}[theorem]{Construction}
+
+\newenvironment{example}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\examplex}
+  {\popQED\endexamplex}
+  
+ \newenvironment{remark}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\remarkx}
+  {\popQED\endremarkx}
+  
+  \newenvironment{definition}
+  {\pushQED{\qed}\renewcommand{\qedsymbol}{$\lozenge$}\definitionx}
+  {\popQED\enddefinitionx} 
+
+    
+%-------- Single symbols --------%
+	
+\DeclareSymbolFont{stmry}{U}{stmry}{m}{n}
+\DeclareMathSymbol\fatsemi\mathop{stmry}{"23}
+
+\DeclareFontFamily{U}{mathx}{\hyphenchar\font45}
+\DeclareFontShape{U}{mathx}{m}{n}{
+      <5> <6> <7> <8> <9> <10>
+      <10.95> <12> <14.4> <17.28> <20.74> <24.88>
+      mathx10
+      }{}
+\DeclareSymbolFont{mathx}{U}{mathx}{m}{n}
+\DeclareFontSubstitution{U}{mathx}{m}{n}
+\DeclareMathAccent{\widecheck}{0}{mathx}{"71}
+
+
+%-------- Renewed commands --------%
+
+\renewcommand{\ss}{\subseteq}
+
+%-------- Other Macros --------%
+
+
+\DeclarePairedDelimiter{\present}{\langle}{\rangle}
+\DeclarePairedDelimiter{\copair}{[}{]}
+\DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
+\DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
+\DeclarePairedDelimiter{\corners}{\ulcorner}{\urcorner}
+\DeclarePairedDelimiter{\ihom}{[}{]}
+
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Mor}{Mor}
+\DeclareMathOperator{\dom}{dom}
+\DeclareMathOperator{\cod}{cod}
+\DeclareMathOperator{\idy}{idy}
+\DeclareMathOperator{\comp}{com}
+\DeclareMathOperator*{\colim}{colim}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\ob}{Ob}
+\DeclareMathOperator{\Tr}{Tr}
+\DeclareMathOperator{\el}{El}
+
+
+
+
+\newcommand{\const}[1]{\texttt{#1}}%a constant, or named element of a set
+\newcommand{\Set}[1]{\mathsf{#1}}%a named set
+\newcommand{\ord}[1]{\mathsf{#1}}%an ordinal
+\newcommand{\cat}[1]{\mathcal{#1}}%a generic category
+\newcommand{\Cat}[1]{\mathbf{#1}}%a named category
+\newcommand{\fun}[1]{\mathrm{#1}}%a function
+\newcommand{\Fun}[1]{\mathrm{#1}}%a named functor
+
+
+
+
+\newcommand{\id}{\mathrm{id}}
+\newcommand{\then}{\mathbin{\fatsemi}}
+
+\newcommand{\cocolon}{:\!}
+
+
+\newcommand{\iso}{\cong}
+\newcommand{\too}{\longrightarrow}
+\newcommand{\tto}{\rightrightarrows}
+\newcommand{\To}[2][]{\xrightarrow[#1]{#2}}
+\renewcommand{\Mapsto}[1]{\xmapsto{#1}}
+\newcommand{\Tto}[3][13pt]{\begin{tikzcd}[sep=#1, cramped, ampersand replacement=\&, text height=1ex, text depth=.3ex]\ar[r, shift left=2pt, "#2"]\ar[r, shift right=2pt, "#3"']\&{}\end{tikzcd}}
+\newcommand{\Too}[1]{\xrightarrow{\;\;#1\;\;}}
+\newcommand{\from}{\leftarrow}
+\newcommand{\ffrom}{\leftleftarrows}
+\newcommand{\From}[1]{\xleftarrow{#1}}
+\newcommand{\Fromm}[1]{\xleftarrow{\;\;#1\;\;}}
+\newcommand{\surj}{\twoheadrightarrow}
+\newcommand{\inj}{\rightarrowtail}
+\newcommand{\wavyto}{\rightsquigarrow}
+\newcommand{\lollipop}{\multimap}
+\newcommand{\imp}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+\newcommand{\down}{\mathbin{\downarrow}}
+\newcommand{\fromto}{\leftrightarrows}
+\newcommand{\tickar}{\xtickar{}}
+\newcommand{\slashar}{\xslashar{}}
+
+
+
+\newcommand{\inv}{^{-1}}
+\newcommand{\op}{^\tn{op}}
+
+\newcommand{\tn}[1]{\textnormal{#1}}
+\newcommand{\ol}[1]{\overline{#1}}
+\newcommand{\ul}[1]{\underline{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wc}[1]{\widecheck{#1}}
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+\newcommand{\dual}[1]{{#1}^\vee}
+
+
+
+\newcommand{\bb}{\mathbb{B}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\pp}{\mathbb{P}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+
+
+\newcommand{\finset}{\Cat{Fin}}
+\newcommand{\smset}{\Cat{Set}}
+\newcommand{\smcat}{\Cat{Cat}}
+\newcommand{\catsharp}{\Cat{Cat}^{\sharp}}
+\newcommand{\ppolyfun}{\mathbb{P}\Cat{olyFun}}
+\newcommand{\ccatsharp}{\mathbb{C}\Cat{at}^{\sharp}}
+\newcommand{\ccatsharpdisc}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{disc}}}
+\newcommand{\ccatsharplin}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{lin}}}
+\newcommand{\ccatsharpdisccon}{\mathbb{C}\Cat{at}^{\sharp}_{\tn{disc,con}}}
+\newcommand{\sspan}{\mathbb{S}\Cat{pan}}
+
+\newcommand{\List}{\Fun{List}}
+\newcommand{\set}{\tn{-}\Cat{Set}}
+
+
+
+
+\newcommand{\yon}{\mathcal{y}}
+\newcommand{\poly}{\Cat{Poly}}
+%\newcommand{\poly}{\smset[\yon]}
+\newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
+\newcommand{\0}{\textsf{0}}
+\newcommand{\1}{\tn{\textsf{1}}}
+\newcommand{\2}{\tn{\textsf{2}}}
+\newcommand{\3}{\tn{\textsf{3}}}
+\newcommand{\4}{\tn{\textsf{4}}}
+\newcommand{\5}{\tn{\textsf{5}}}
+\newcommand{\6}{\tn{\textsf{6}}}
+\newcommand{\7}{\tn{\textsf{7}}}
+\newcommand{\8}{\tn{\textsf{8}}}
+\newcommand{\9}{\tn{\textsf{9}}}
+\newcommand{\tri}{\mathbin{\triangleleft}}
+\newcommand{\triright}{\mathbin{\triangleright}}
+\newcommand{\tripow}[1]{^{\tri #1}}
+\newcommand{\agg}{\circledast}
+\newcommand{\rdag}{^{\rotatebox{0}{$\dagger$}}}
+\newcommand{\ldag}{^{\rotatebox{180}{$\dagger$}}}
+\newcommand{\ot}[2]{\,\mbox{${}_{#1}\otimes_{#2}$}\,}
+\newcommand{\ih}[4]{{}_{#1}[#2,#3]_{#4}}
+
+\newcommand{\fd}{\Cat{FD}}
+\newcommand{\ag}{\Cat{Ag}}
+
+
+% lenses
+\newcommand{\biglens}[2]{
+     \begin{bmatrix}{\vphantom{f_f^f}#2} \\ {\vphantom{f_f^f}#1} \end{bmatrix}
+}
+\newcommand{\littlelens}[2]{
+     \begin{bsmallmatrix}{\vphantom{f}#2} \\ {\vphantom{f}#1} \end{bsmallmatrix}
+}
+\newcommand{\lens}[2]{
+  \relax\if@display
+     \biglens{#1}{#2}
+  \else
+     \littlelens{#1}{#2}
+  \fi
+}
+
+
+
+\newcommand{\qand}{\quad\text{and}\quad}
+\newcommand{\qqand}{\qquad\text{and}\qquad}
+
+
+\newcommand{\coto}{\nrightarrow}
+\newcommand{\cofun}{{\raisebox{2pt}{\resizebox{2.5pt}{2.5pt}{$\setminus$}}}}
+
+\newcommand{\coalg}{\tn{-}\Cat{Coalg}}
+
+\newcommand{\bic}[2]{{}_{#1}\Cat{Comod}_{#2}}
+
+% ---- Changeable document parameters ---- %
+
+\linespread{1.1}
+%\allowdisplaybreaks
+\setsecnumdepth{section}
+\settocdepth{section}
+\setlength{\parindent}{15pt}
+\setcounter{tocdepth}{1}
+
+
+
+%--------------- Document ---------------%
+\begin{document}
+
+\title{Agenda categories: toward a self-reflective theory
+}
+
+\author{David I. Spivak}
+
+\date{\vspace{-.2in}}
+
+\maketitle
+
+\begin{abstract}
+Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\Cat{DDial}=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{agenda category} construction, such that $\fd(\cat{C})=\ag(\ag(\cat{C}))$. An object in $\ag(\cat{C})$ is a list of \emph{items}, each of which has an associated $\cat{C}$-object (called its \emph{value}), and a morphism $(I,c)\to (I',c')$ in $\ag(\cat{C})$ is a \emph{method}: given any item $i:I$ we specify an item $i':I'$ by which to accomplish it, as well as a map $c'(i')\to c(i)$ returning the value of that item. 
+
+The agenda category enjoys excellent formal properties: $\ag(\cat{C})$ always has extensive coproducts; $\ag(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\ag(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\ag(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a composition operation on $\fd(\cat{C})$ for any monoidal category C, and we learned from Nelson Niu that a comonoid in $\fd(\cat{C})$ is precisely a category enriched in $\ag(\cat{C})$. 
+
+From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc, and the fact that a comonoid in $\poly$ is a ($\smset$-enriched) category. Finally, we will show that we can almost build $\poly$ inside of $\poly$---making $\poly$ a "self-reflective theory"---using just the above operations (namely, composition and coclosure): the only thing missing is a better understanding of the generally-assumed-trivial opposite category construction, which is more interesting in this setting because comonoids in $\fd(\cat{C})$ are oriented and hence are not trivial to transpose. \\
+
+\smallskip
+
+\noindent
+\textbf{Keywords:} **
+\end{abstract}
+
+\tableofcontents*
+
+%-------- Chapter --------%
+\chapter{Introduction}
+
+
+
+
+\printbibliography
+\end{document}
