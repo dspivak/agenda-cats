@@ -41,7 +41,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{Library20211112.bib} 
+  \addbibresource{Library20220706.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -254,6 +254,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\inv}{^{-1}}
 \newcommand{\op}{^\tn{op}}
+\newcommand{\co}{^\tn{co}}
 
 \newcommand{\tn}[1]{\textnormal{#1}}
 \newcommand{\ol}[1]{\overline{#1}}
@@ -278,7 +279,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \newcommand{\finset}{\Cat{Fin}}
 \newcommand{\smset}{\Cat{Set}}
-\newcommand{\smcat}{\Cat{Cat}}
+\newcommand{\smcat}{\mathbb{C}\Cat{at}}
 \newcommand{\catsharp}{\Cat{Cat}^{\sharp}}
 \newcommand{\ppolyfun}{\mathbb{P}\Cat{olyFun}}
 \newcommand{\ccatsharp}{\mathbb{C}\Cat{at}^{\sharp}}
@@ -310,14 +311,14 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\triright}{\mathbin{\triangleright}}
 \newcommand{\tripow}[1]{^{\tri #1}}
-\newcommand{\agg}{\circledast}
 \newcommand{\rdag}{^{\rotatebox{0}{$\dagger$}}}
 \newcommand{\ldag}{^{\rotatebox{180}{$\dagger$}}}
 \newcommand{\ot}[2]{\,\mbox{${}_{#1}\otimes_{#2}$}\,}
 \newcommand{\ih}[4]{{}_{#1}[#2,#3]_{#4}}
 
 \newcommand{\fd}{\Cat{FD}}
-\newcommand{\ag}{\Cat{Ag}}
+\newcommand{\mn}{\Cat{Mn}}
+\newcommand{\ddial}{\Cat{DDial}}
 
 
 % lenses
@@ -362,7 +363,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{Agenda categories: toward a self-reflective theory
+\title{The root source of structures\\on $\poly$ and dependent dialectica
 }
 
 \author{David I. Spivak}
@@ -372,11 +373,11 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\Cat{DDial}=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{agenda category} construction, such that $\fd(\cat{C})=\ag(\ag(\cat{C}))$. An object in $\ag(\cat{C})$ is a list of \emph{items}, each of which has an associated $\cat{C}$-object (called its \emph{value}), and a morphism $(I,c)\to (I',c')$ in $\ag(\cat{C})$ is a \emph{method}: given any item $i:I$ we specify an item $i':I'$ by which to accomplish it, as well as a map $c'(i')\to c(i)$ returning the value of that item. 
+Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{menu category} construction, with the property that $\fd(\cat{C})\cong\mn(\mn(\cat{C}))$.
 
-The agenda category enjoys excellent formal properties: $\ag(\cat{C})$ always has extensive coproducts; $\ag(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\ag(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\ag(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a composition operation on $\fd(\cat{C})$ for any monoidal category C, and we learned from Nelson Niu that a comonoid in $\fd(\cat{C})$ is precisely a category enriched in $\ag(\cat{C})$. 
+The menu category $\mn(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\mn(\cat{C})$ always has extensive coproducts; $\mn(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\mn(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\mn(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a composition operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$, and we learned from Nelson Niu that a comonoid in $\fd(\cat{C})$ is precisely a category enriched in $\mn(\cat{C})$. 
 
-From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc, and the fact that a comonoid in $\poly$ is a ($\smset$-enriched) category. Finally, we will show that we can almost build $\poly$ inside of $\poly$---making $\poly$ a "self-reflective theory"---using just the above operations (namely, composition and coclosure): the only thing missing is a better understanding of the generally-assumed-trivial opposite category construction, which is more interesting in this setting because comonoids in $\fd(\cat{C})$ are oriented and hence are not trivial to transpose. \\
+From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc, and the fact that a comonoid in $\poly$ is a ($\smset$-enriched) category.  \\
 
 \smallskip
 
@@ -384,13 +385,38 @@ From this laundry list of formal properties and the fact that the free object ca
 \textbf{Keywords:} **
 \end{abstract}
 
-\tableofcontents*
-
 %-------- Chapter --------%
 \chapter{Introduction}
 
+For a fixed universe $u$, the ($u$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_u(\cat{C})$, is a very rich construction. Applying it successively to the empty category, one obtains:
+\[
+	\Cat{1}\cong \mn_u(\Cat{0}),\qquad
+	\smset_u\cong\mn_u(\Cat{1}),\qquad
+	\poly_u\cong\mn_u(\smset_u)
+\]
+It is not a 2-monad on $\smcat$, since it technically is of the form
+\[
+\mn\colon\smcat\co\to\smcat
+\]
+however, applying it twice does give a monad, namely the free $u$-distributive category on $\cat{C}$
+\[
+\fd_u(\cat{C})\cong\mn_u(\mn_u(\cat{C}))
+\]
+Here $\fd_u(\cat{C})$ has $u$-ary coproducts and $u$-ary products that distribute over them, and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
+
+It is well-known that $\poly_u$ is the free $u$-distributive category on a single object, i.e.\ $\poly\cong\fd(1)$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
+\[\ddial\cong\fd_u(\Cat{2})\]
+where $\Cat{2}=(\bullet\to\bullet)$ is the walking arrow category. In this note, we show that much of the abundance of structure one finds in $\poly$ and $\ddial$ in fact arises from this root source.
 
 
+\chapter{The menu construction}
+
+\chapter{Categorical structures on $\mn(\cat{C})$}
+\section{Limits and colimits}
+\section{Monoidal structures}
+\section{Closures}
+\section{Coclosures}
+\section{Enrichment}
 
 \printbibliography
 \end{document}
