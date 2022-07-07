@@ -131,7 +131,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
   
   % amsthm %
 \theoremstyle{definition}
-\newtheorem{definitionx}{Definition}[section]
+\newtheorem{definitionx}{Definition}[chapter]
 \newtheorem{examplex}[definitionx]{Example}
 \newtheorem{remarkx}[definitionx]{Remark}
 \newtheorem{notation}[definitionx]{Notation}
@@ -353,8 +353,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 
 \linespread{1.1}
 %\allowdisplaybreaks
-\setsecnumdepth{section}
-\settocdepth{section}
+\setsecnumdepth{chapter}
+\settocdepth{chapter}
 \setlength{\parindent}{15pt}
 \setcounter{tocdepth}{1}
 
@@ -375,9 +375,9 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \begin{abstract}
 Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{menu category} construction, with the property that $\fd(\cat{C})\cong\mn(\mn(\cat{C}))$.
 
-The menu category $\mn(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\mn(\cat{C})$ always has extensive coproducts; $\mn(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\mn(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\mn(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a composition operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$, and we learned from Nelson Niu that a comonoid in $\fd(\cat{C})$ is precisely a category enriched in $\mn(\cat{C})$. 
+The menu category $\mn(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\mn(\cat{C})$ always has extensive coproducts; $\mn(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\mn(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\mn(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a substitution operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$. 
 
-From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc, and the fact that a comonoid in $\poly$ is a ($\smset$-enriched) category.  \\
+From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc.  \\
 
 \smallskip
 
@@ -388,35 +388,95 @@ From this laundry list of formal properties and the fact that the free object ca
 %-------- Chapter --------%
 \chapter{Introduction}
 
-For a fixed universe $u$, the ($u$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_u(\cat{C})$, is a very rich construction. Applying it successively to the empty category, one obtains:
+For a fixed universe $u$, the ($u$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_u(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
 \[
 	\Cat{1}\cong \mn_u(\Cat{0}),\qquad
 	\smset_u\cong\mn_u(\Cat{1}),\qquad
-	\poly_u\cong\mn_u(\smset_u)
+	\poly_u\cong\mn_u(\smset_u).
 \]
 It is not a 2-monad on $\smcat$, since it technically is of the form
 \[
 \mn\colon\smcat\co\to\smcat
 \]
-however, applying it twice does give a monad, namely the free $u$-distributive category on $\cat{C}$
+however, applying it twice does result in a monad, namely the free $u$-distributive category on $\cat{C}$
 \[
 \fd_u(\cat{C})\cong\mn_u(\mn_u(\cat{C}))
 \]
 Here $\fd_u(\cat{C})$ has $u$-ary coproducts and $u$-ary products that distribute over them, and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
 
-It is well-known that $\poly_u$ is the free $u$-distributive category on a single object, i.e.\ $\poly\cong\fd(1)$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
+It is well-known that $\poly_u$ is the free $u$-distributive category on a single object, i.e.\ $\poly\cong\fd(\Cat{1})$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
 \[\ddial\cong\fd_u(\Cat{2})\]
 where $\Cat{2}=(\bullet\to\bullet)$ is the walking arrow category. In this note, we show that much of the abundance of structure one finds in $\poly$ and $\ddial$ in fact arises from this root source.
 
+%---- Section ----%
+\section*{Acknowledgments}
+We thank Josh Meyers, Nelson Niu, and Brandon Shapiro for many useful conversations.  
 
+This material is based upon work supported by the Air Force Office of Scientific Research under award number FA9550-20-1-0348.
+
+
+%-------- Chapter --------%
 \chapter{The menu construction}
 
+Free completions of categories have been well-studied; in particular, free coproduct completions of categories were a major theme in the recent paper \cite{adamek2020nice}. We have not seen explicit interest in the coproduct completion of the opposite category, but searching for this was difficult and may have been inadequate.
+
+
+\begin{proposition}
+Let $\cat{C}$ be a category. The following categories are equivalent:
+\begin{enumerate}
+	\item the coproduct completion of $\cat{C}\op$,
+	\item the opposite of the product completion of $\cat{C}$, and
+	\item the category whose objects are pairs $(A,c)$, where $A\in\smset$ and $c\colon A\to\cat{C}$, and for which
+	\begin{align*}
+	\Hom((A,c),(A',c'))&\coloneqq\prod_{a\in A}\sum_{a'\in A'}\cat{C}\big(c'(a'),c(a)\big)\\&\cong\left\{(f,\varphi)\;\middle|\; f\in\smset(A,A')\text{ and }\forall a\in A, \varphi(a)\in\cat{C}(c'(fa),c(a))\right\}.
+	\end{align*}
+\end{enumerate}
+We denote this category by $\mn(\cat{C})$.
+\end{proposition}
+\begin{proof}[Sketch of proof]
+We first show that $\mn(\cat{C})$ is a coproduct completion of $\cat{C}$. There is an obvious inclusion $\eta_\cat{C}\colon \cat{C}\op\to\mn(\cat{C})$ sending $c\mapsto (1,c)$. Given a set $I$ and objects $(A_i,c_i)_{i\in I}$, their coproduct $(A,c)\coloneqq\sum_{i\in I}(A_i,c_i)$ is given by
+\[
+A\coloneqq\sum_{i\in I}A_i
+\qqand
+c(i,a)\coloneqq c_i(a).
+\]
+Indeed, there is an inclusion map $(A_i,c_i)\to (A,c)$, given by the coproduct inclusion of sets $A_i\to A$ and identities on the $\cat{C}$-values. Given any other $(B,d)$ and maps $(f_i,\varphi_i)\colon (A_i,c_i)\to(B,d)$, we can define $f\colon A\to B$ by the universal property and $\varphi_{i,a}\coloneqq\varphi_i(a)$ for each $(i,a)\in A$. This makes the appropriate diagrams commute and is unique as such.
+
+Given any other coproduct-complete category $\cat{D}$ equipped with a functor $F\colon\cat{C}\op\to\cat{D}$, there is a unique functor $\mn(\cat{C})\to\cat{D}$ commuting with $\eta$: it sends $(A,c)$ to the coproduct $\sum_{a\in A}F(c_a)$. We leave the details to the reader.
+
+It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. This completes the proof sketch.
+\end{proof}
+
+The name \emph{menu category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\mn(\cat{C})$ consists of a menu of items in $\cat{C}$: one indicates a menu item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first menu: each menu item $a\in A$ is sent to some menu item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
+\footnote{Here we use ``element'' of $c(a)$ in the sense of generalized element: a map into $c(a)$.}
+
+
+
+
+
+
+%-------- Chapter --------%
 \chapter{Categorical structures on $\mn(\cat{C})$}
+%---- Section ----%
 \section{Limits and colimits}
+%---- Section ----%
+\section{Extensivity and distributivity}
+\cite{carboni1993introduction}
+
+
+%---- Section ----%
 \section{Monoidal structures}
+%---- Section ----%
 \section{Closures}
+%---- Section ----%
 \section{Coclosures}
-\section{Enrichment}
+
+%-------- Chapter --------%
+\chapter{Categorical structures on $\fd(\cat{C})$}
+%---- Section ----%
+\section{Structures arising from $\fd=\mn\circ\mn$}
+%---- Section ----%
+\section{The substitution product}
 
 \printbibliography
 \end{document}
