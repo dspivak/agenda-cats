@@ -388,24 +388,26 @@ From this laundry list of formal properties and the fact that the free object ca
 %-------- Chapter --------%
 \chapter{Introduction}
 
-For a fixed universe $u$, the ($u$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_u(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
+For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
 \[
-	\Cat{1}\cong \mn_u(\Cat{0}),\qquad
-	\smset_u\cong\mn_u(\Cat{1}),\qquad
-	\poly_u\cong\mn_u(\smset_u).
+	\Cat{1}\cong \mn_U(\Cat{0}),\qquad
+	\smset_U\cong\mn_U(\Cat{1}),\qquad
+	\poly_U\cong\mn_U(\smset_U).
 \]
 It is not a 2-monad on $\smcat$, since it technically is of the form
 \[
 \mn\colon\smcat\co\to\smcat
 \]
-however, applying it twice does result in a monad, namely the free $u$-distributive category on $\cat{C}$
+however, applying it twice does result in a monad, namely the free $U$-distributive category on $\cat{C}$
 \[
-\fd_u(\cat{C})\cong\mn_u(\mn_u(\cat{C}))
+\fd_U(\cat{C})\cong\mn_U(\mn_U(\cat{C})).
 \]
-Here $\fd_u(\cat{C})$ has $u$-ary coproducts and $u$-ary products that distribute over them, and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
+Here $\fd_U(\cat{C})$ has $U$-ary coproducts and $U$-ary products that distribute over them,%
+\footnote{The term \emph{distributive category} generally refers to a category where finite products distribute over finite coproducts. In $\fd_U(\cat{C})$, $U$-ary products distribute over $U$-ary coproducts, so it is often called \emph{completely distributive}. We will call it $U$-distributive.}
+ and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
 
-It is well-known that $\poly_u$ is the free $u$-distributive category on a single object, i.e.\ $\poly\cong\fd(\Cat{1})$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
-\[\ddial\cong\fd_u(\Cat{2})\]
+It is well-known that $\poly_U$ is the free $U$-distributive category on a single object, i.e.\ $\poly\cong\fd(\Cat{1})$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
+\[\ddial\cong\fd_U(\Cat{2})\]
 where $\Cat{2}=(\bullet\to\bullet)$ is the walking arrow category. In this note, we show that much of the abundance of structure one finds in $\poly$ and $\ddial$ in fact arises from this root source.
 
 %---- Section ----%
@@ -418,8 +420,9 @@ This material is based upon work supported by the Air Force Office of Scientific
 %-------- Chapter --------%
 \chapter{The menu construction}
 
-Free completions of categories have been well-studied; in particular, free coproduct completions of categories were a major theme in the recent paper \cite{adamek2020nice}. We have not seen explicit interest in the coproduct completion of the opposite category, but searching for this was difficult and may have been inadequate.
+Free completions of categories have been well-studied; in particular, free coproduct completions of categories were a major theme in the recent paper \cite{adamek2020nice}. We have not seen explicit interest in the coproduct completion of the opposite category, but searching for this was difficult and our search may have been inadequate.
 
+For the remainder of the paper, we fix a Grothendieck universe $U$ of sets; it will be implicit. We call a set \emph{small} if it is in $\ol{u}$. The category $\smset$ denotes the category of small sets.
 
 \begin{proposition}
 Let $\cat{C}$ be a category. The following categories are equivalent:
@@ -457,8 +460,29 @@ The name \emph{menu category} is perhaps not ideal; we are quite open to it bein
 
 %-------- Chapter --------%
 \chapter{Categorical structures on $\mn(\cat{C})$}
-%---- Section ----%
-\section{Limits and colimits}
+
+\begin{proposition}
+Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\mn(\cat{C})$ has limits of shape $J$. Similarly, if $\cat{C}$ has limits of shape $J$, then $\mn(\cat{C})$ has colimits of shape $J$.
+\end{proposition}
+\begin{proof}
+	The category of sets has $J$-shaped colimits and $J$-shaped limits. Suppose given a diagram $(A,c)\colon J\to \mn(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(A,c)$, where
+	\[
+	A\coloneqq\lim_{j\in J}A_j
+	\qqand
+	c(a)\coloneqq\colim_{j\in J}c_j(\pi_j(a))
+	\]
+	Here, $\pi_j\colon A\to A_j$ is the projection. It is easy to check that this is a limit.
+	
+	Colimits are a bit harder. Given the diagram $(A,c)$ as above, its colimit is given by $\colim_{j\in J}(A_j,c_j)\coloneqq(A',c')$, where
+	\[
+	A'\coloneqq\colim_{j\in J}A_j
+	\qqand
+	c'(a')\coloneqq
+	\]
+	**
+\end{proof}
+
+
 %---- Section ----%
 \section{Extensivity and distributivity}
 \cite{carboni1993introduction}
@@ -477,6 +501,10 @@ The name \emph{menu category} is perhaps not ideal; we are quite open to it bein
 \section{Structures arising from $\fd=\mn\circ\mn$}
 %---- Section ----%
 \section{The substitution product}
+
+%---- Section ----%
+\section{The menu category construction in $\poly$}
+
 
 \printbibliography
 \end{document}
