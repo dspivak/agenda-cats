@@ -308,6 +308,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\ot}[2]{\,\mbox{${}_{#1}\otimes_{#2}$}\,}
 \newcommand{\ih}[4]{{}_{#1}[#2,#3]_{#4}}
 
+\newcommand{\monprod}{\blacktriangleleft}
+
 \newcommand{\fd}{\Cat{FD}}
 \newcommand{\mn}{\Cat{Mn}}
 \newcommand{\ddial}{\Cat{DDial}}
@@ -564,16 +566,42 @@ commutes strictly. It is easy to see that $\eta$ and $\mu$ are unital and associ
 \end{proof}
 
 \begin{corollary}\label{cor.induced_monoidal}
-The functor $\mn$ sends pseudomonoids to pseudomonoids. In other words, for any monoidal structure on $\cat{C}$, we have an induced monoidal structure on $\mn(\cat{C}$).
+The functor $\mn$ sends pseudomonoids to pseudomonoids. In other words, for any monoidal structure $(I,\odot)$ on $\cat{C}$, we have an induced monoidal structure $(\ol{I},\ol{\odot})$ on $\mn(\cat{C})$.
 \end{corollary}
 
-To be explicit, for the monoidal category $(\cat{C},I,\cdot)$, the induced monoidal category from \cref{cor.induced_monoidal} is
+To be explicit, the induced monoidal structure on $\mn(\cat{C})$, as in \cref{cor.induced_monoidal}, is given by
 \[
-\Big(\mn(\cat{C}),\big(\eta\then\mn(I)\big),\big(\mu_{\cat{C},\cat{C}}\then\mn(\cdot)\big)\Big)
+\ol{I}\coloneqq\eta\then\mn(I)
+\qqand
+\ol{\odot}\coloneqq\mu_{\cat{C},\cat{C}}\then\mn(\odot)
 \]
+Recall from \cref{prop.colimits_to_limits} that if $\cat{C}$ has finite coproducts, then $\mn(\cat{C})$ has finite products. In the notation of \cref{cor.induced_monoidal}, we have $1=\ol{0}$ and $\times=\ol{+}$.
+
 
 %---- Section ----%
 \section{Closures}
+
+
+\begin{definition}
+Given a monoidal product $\monprod$ on $\cat{C}$, a \emph{left index-coclosure} for $\monprod$ consists of a functor $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$ with the property that for all $C,D',D\in\cat{C}$, we have
+\[
+\cat{C}(C, D\monprod D')\cong\sum_{i\in I_{\cat{C},\cat{D}}}\cat{C}(X_i, D').
+\]
+A \emph{right index-coclosure} for $\monprod$ is a functor $(J,Y)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, but this time with
+\[
+\cat{C}(C, D'\monprod D)\cong\sum_{j\in J_{\cat{C},\cat{D}}}\cat{C}(Y_j, D').
+\]
+\end{definition}
+
+\begin{example}[Cartesian monoidal categories have index coclosures]
+
+\end{example}
+
+\begin{example}[Extensive categories have index coclosures]
+
+\end{example}
+
+
 %---- Section ----%
 \section{Coclosures}
 
