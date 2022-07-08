@@ -41,7 +41,7 @@ citecolor=orange!50!black, urlcolor=orange!50!black, pdfencoding=unicode]{hyperr
 
 
 % biblatex %
-  \addbibresource{Library20220706.bib} 
+  \addbibresource{Library20220708.bib} 
 
 % hyperref %
   \hypersetup{final}
@@ -189,7 +189,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %-------- Other Macros --------%
 
 
-\DeclarePairedDelimiter{\present}{\langle}{\rangle}
+\DeclarePairedDelimiter{\pair}{\langle}{\rangle}
 \DeclarePairedDelimiter{\copair}{[}{]}
 \DeclarePairedDelimiter{\floor}{\lfloor}{\rfloor}
 \DeclarePairedDelimiter{\ceil}{\lceil}{\rceil}
@@ -461,39 +461,121 @@ The name \emph{menu category} is perhaps not ideal; we are quite open to it bein
 %-------- Chapter --------%
 \chapter{Categorical structures on $\mn(\cat{C})$}
 
-\begin{proposition}
-Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\mn(\cat{C})$ has limits of shape $J$. Similarly, if $\cat{C}$ has limits of shape $J$, then $\mn(\cat{C})$ has colimits of shape $J$.
+%---- Section ----%
+\section{Limits and colimits}
+
+\begin{proposition}\label{prop.colimits_to_limits}
+Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\mn(\cat{C})$ has limits of shape $J$.
 \end{proposition}
 \begin{proof}
-	The category of sets has $J$-shaped colimits and $J$-shaped limits. Suppose given a diagram $(A,c)\colon J\to \mn(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(A,c)$, where
+	The category of sets has $J$-shaped limits. So suppose given a diagram $(A,c)\colon J\to \mn(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(\ol{A},\ol{c})$, where
 	\[
-	A\coloneqq\lim_{j\in J}A_j
+	\ol{A}\coloneqq\lim_{j\in J}A_j
 	\qqand
-	c(a)\coloneqq\colim_{j\in J}c_j(\pi_j(a))
+	\ol{c}(a)\coloneqq\colim_{j\in J}c_j(\pi_j(a))
 	\]
-	Here, $\pi_j\colon A\to A_j$ is the projection. It is easy to check that this is a limit.
-	
-	Colimits are a bit harder. Given the diagram $(A,c)$ as above, its colimit is given by $\colim_{j\in J}(A_j,c_j)\coloneqq(A',c')$, where
-	\[
-	A'\coloneqq\colim_{j\in J}A_j
-	\qqand
-	c'(a')\coloneqq
-	\]
-	**
+	Here, $\pi_j\colon \ol{A}\to A_j$ is the projection. It is easy to check that this is a limit.
+\end{proof}
+
+We have far less control of colimits.
+
+\begin{proposition}\label{prop.limits_to_colimits}
+If $\cat{C}$ has small limits, then $\mn(\cat{C})$ has small colimits.
+\end{proposition}
+\begin{proof}
+Let $J$ be a small category. A diagram $(A,c)\colon J\to \mn(\cat{C})$ can be identified with a functor $A\colon J\to \smset$ and a functor $c\colon \int^JA\to\cat{C}\op$ from its category of elements. Let $\ul{A}\coloneqq\colim_{j\in J}A_j$ and consider the solid-arrow diagram
+\[
+\begin{tikzcd}
+	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\cat{C}\op\\
+	\ul{A}\ar[ur, bend right, dashed, "\ul{c}"']
+\end{tikzcd}
+\]
+The vertical functor sends each object $(j,a)$ to its equivalence class in the colimit and each morphism to the corresponding identity; it is the universal map from the lax colimit of $A$ to the strict colimit of $A$. Define the dashed arrow $\ul{c}$ to be the left Kan extension, which exists because $\cat{C}\op$ has small colimits.
+
+Given an object $(A',c')\in\mn(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that commute for morphisms $j\to j'$ in $J$, we obtain the universal map $f\colon\ul{A}\to A'$. One checks that we then have the diagram (shown left), and hence, by definition of left Kan extension, a universal map (shown right), completing the proof:
+\[
+\begin{tikzcd}
+	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\cat{C}\op\\
+	\ul{A}\ar[r, "f"']&A'\ar[u, "c'"']\ar[ul, phantom, pos=.6, "\Downarrow"]
+\end{tikzcd}
+\hspace{.6in}
+\begin{tikzcd}
+	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\cat{C}\op\\
+	\ul{A}\ar[r, "f"']\ar[ur, "\ul{c}" description]&A'\ar[u, "c'"']
+	\ar[ul, phantom, pos=.2, "\Downarrow"]\ar[ul, phantom, pos=.85, "\Downarrow"]
+\end{tikzcd}
+\qedhere
+\]
+\end{proof}
+
+%---- Section ----%
+\section{Extensivity}
+
+\begin{proposition}
+For any $\cat{C}$, the category $\mn(\cat{C})$ is extensive.
+\end{proposition}
+\begin{proof}
+This was proven as \cite[Proposition 2.4]{carboni1993introduction}. The category of sets is extensive, so given a diagram
+\[
+\begin{tikzcd}
+	&(A',c')\ar[d]\\
+	(A_1,c_1)\ar[r]&(A_1+A_2,\pair{c_1,c_2})&(A_2,c_2)\ar[l]
+\end{tikzcd}
+\]
+we have $A'\cong A_1'+A_2'$ where $A_1'\coloneqq A_1\times_{(A_1+A_2)}A'$ is the pullback, and similarly for $A_2'$. Then we define $c_i'\colon A_i'\to \cat{C}$ for $i\in\{1,2\}$ by $c_i'(a_i')\coloneqq c'(a_i')$.
+ Hence we have a pair of pullbacks
+\[
+\begin{tikzcd}
+	(A'_1,c'_1)\ar[r]\ar[d]\ar[dr, phantom, very near start, "\lrcorner"]&
+	(A',c')\ar[d]&
+	(A'_2,c'_2)\ar[l]\ar[d]\ar[dl, phantom, very near start, "\llcorner"]
+	\\
+	(A_1,c_1)\ar[r]&(A_1+A_2,\pair{c_1,c_2})&(A_2,c_2)\ar[l]
+\end{tikzcd}
+\]
+such that the top row is a coproduct, as desired.
 \end{proof}
 
 
-%---- Section ----%
-\section{Extensivity and distributivity}
-\cite{carboni1993introduction}
 
 
 %---- Section ----%
 \section{Monoidal structures}
+
+\begin{proposition}
+The functor $\mn\colon\smcat\to\smcat$ is lax monoidal.
+\end{proposition}
+
 %---- Section ----%
 \section{Closures}
 %---- Section ----%
 \section{Coclosures}
+
+\section{Cartesian closure and distributivity}
+
+\begin{proposition}
+Suppose that $\cat{C}$ is extensive and has a terminal object. Then $\mn(\cat{C}$ is Cartesian closed.
+\end{proposition}
+\begin{proof}
+If $\cat{C}$ is extensive, it has finite coproducts. Hence $\mn(\cat{C})$ has finite products by \cref{prop.colimits_to_limits}; they are given by
+\[
+(A,c)\times (A',c')\coloneqq\big(A\times A', (a,a')\mapsto c(a)+c'(a')\big).
+\]
+Given $(A,c)$ and $(B,d)$, we define
+\[
+(B,d)^{(A,c)}\coloneqq(B^A, f\mapsto ...
+\]
+\end{proof}
+
+\begin{proposition}
+If $\cat{C}$ is extensive, then $\mn(\cat{C})$ is distributive.
+\end{proposition}
+\begin{proof}
+
+\end{proof}
 
 %-------- Chapter --------%
 \chapter{Categorical structures on $\fd(\cat{C})$}
