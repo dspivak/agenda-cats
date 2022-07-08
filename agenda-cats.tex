@@ -298,16 +298,8 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\poly}{\Cat{Poly}}
 %\newcommand{\poly}{\smset[\yon]}
 \newcommand{\ppoly}{\mathbb{P}\Cat{oly}}
-\newcommand{\0}{\textsf{0}}
-\newcommand{\1}{\tn{\textsf{1}}}
-\newcommand{\2}{\tn{\textsf{2}}}
-\newcommand{\3}{\tn{\textsf{3}}}
-\newcommand{\4}{\tn{\textsf{4}}}
-\newcommand{\5}{\tn{\textsf{5}}}
-\newcommand{\6}{\tn{\textsf{6}}}
-\newcommand{\7}{\tn{\textsf{7}}}
-\newcommand{\8}{\tn{\textsf{8}}}
-\newcommand{\9}{\tn{\textsf{9}}}
+\newcommand{\0}{\Cat{0}}
+\newcommand{\1}{\Cat{1}}
 \newcommand{\tri}{\mathbin{\triangleleft}}
 \newcommand{\triright}{\mathbin{\triangleright}}
 \newcommand{\tripow}[1]{^{\tri #1}}
@@ -390,8 +382,8 @@ From this laundry list of formal properties and the fact that the free object ca
 
 For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
 \[
-	\Cat{1}\cong \mn_U(\Cat{0}),\qquad
-	\smset_U\cong\mn_U(\Cat{1}),\qquad
+	\1\cong \mn_U(\0),\qquad
+	\smset_U\cong\mn_U(\1),\qquad
 	\poly_U\cong\mn_U(\smset_U).
 \]
 It is not a 2-monad on $\smcat$, since it technically is of the form
@@ -406,7 +398,7 @@ Here $\fd_U(\cat{C})$ has $U$-ary coproducts and $U$-ary products that distribut
 \footnote{The term \emph{distributive category} generally refers to a category where finite products distribute over finite coproducts. In $\fd_U(\cat{C})$, $U$-ary products distribute over $U$-ary coproducts, so it is often called \emph{completely distributive}. We will call it $U$-distributive.}
  and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
 
-It is well-known that $\poly_U$ is the free $U$-distributive category on a single object, i.e.\ $\poly\cong\fd(\Cat{1})$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
+It is well-known that $\poly_U$ is the free $U$-distributive category on a single object, i.e.\ $\poly\cong\fd(\1)$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
 \[\ddial\cong\fd_U(\Cat{2})\]
 where $\Cat{2}=(\bullet\to\bullet)$ is the walking arrow category. In this note, we show that much of the abundance of structure one finds in $\poly$ and $\ddial$ in fact arises from this root source.
 
@@ -546,8 +538,39 @@ such that the top row is a coproduct, as desired.
 \section{Monoidal structures}
 
 \begin{proposition}
-The functor $\mn\colon\smcat\to\smcat$ is lax monoidal.
+The functor $\mn\colon(\smcat\co,\1,\times)\to(\smcat,\1,\times)$ is lax monoidal.
 \end{proposition}
+\begin{proof}
+We first provide the laxators:
+\[
+  \eta\colon \1\to\mn(\1)
+  \qqand
+  \mu_{\cat{C},\cat{D}}\colon\mn(\cat{C})\times\mn(\cat{D})\to\mn(\cat{C}\times\cat{D}).
+\]
+for any categories $\cat{C},\cat{D}$. The functor $\eta$ picks out the object $(1,1)\in\mn(\1)$, where the first coordinate indicates a one-element set and the second coordinate indicates the unique object of $\1$. The functor $\mu$ is given by
+\[
+\mu((A,c),(B,d))\mapsto(A\times B, \pair{c,d})
+\]
+where $\pair{c,d}(a,b)=(c(a),d(b))\in\cat{C}\times\cat{D}$. The map $\mu$ is a strict 2-natural, meaning that given $F\colon\cat{C}\to\cat{C}'$ and $G\colon\cat{D}\to\cat{D}'$, the diagram
+\[
+\begin{tikzcd}[column sep=large]
+	\mn(\cat{C})\times\mn(\cat{D})\ar[r, "\mu_{\cat{C},\cat{D}}"]\ar[d, "\mn(F)\times\mn(G)"']&
+	\mn(\cat{C}\times\cat{D})\ar[d, "\mn(F\times G)"]\\
+	\mn(\cat{C}')\times\mn(\cat{D}')\ar[r, "\mu_{\cat{C'},\cat{D'}}"']&
+	\mn(\cat{C}'\times\cat{D}')
+\end{tikzcd}
+\]
+commutes strictly. It is easy to see that $\eta$ and $\mu$ are unital and associative as desired.
+\end{proof}
+
+\begin{corollary}\label{cor.induced_monoidal}
+The functor $\mn$ sends pseudomonoids to pseudomonoids. In other words, for any monoidal structure on $\cat{C}$, we have an induced monoidal structure on $\mn(\cat{C}$).
+\end{corollary}
+
+To be explicit, for the monoidal category $(\cat{C},I,\cdot)$, the induced monoidal category from \cref{cor.induced_monoidal} is
+\[
+\Big(\mn(\cat{C}),\big(\eta\then\mn(I)\big),\big(\mu_{\cat{C},\cat{C}}\then\mn(\cdot)\big)\Big)
+\]
 
 %---- Section ----%
 \section{Closures}
@@ -557,7 +580,7 @@ The functor $\mn\colon\smcat\to\smcat$ is lax monoidal.
 \section{Cartesian closure and distributivity}
 
 \begin{proposition}
-Suppose that $\cat{C}$ is extensive and has a terminal object. Then $\mn(\cat{C}$ is Cartesian closed.
+Suppose that $\cat{C}$ is extensive and has a terminal object. Then $\mn(\cat{C})$ is Cartesian closed.
 \end{proposition}
 \begin{proof}
 If $\cat{C}$ is extensive, it has finite coproducts. Hence $\mn(\cat{C})$ has finite products by \cref{prop.colimits_to_limits}; they are given by
