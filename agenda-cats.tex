@@ -585,21 +585,58 @@ Recall from \cref{prop.colimits_to_limits} that if $\cat{C}$ has finite coproduc
 \begin{definition}
 Given a monoidal product $\monprod$ on $\cat{C}$, a \emph{left index-coclosure} for $\monprod$ consists of a functor $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$ with the property that for all $C,D',D\in\cat{C}$, we have
 \[
-\cat{C}(C, D\monprod D')\cong\sum_{i\in I_{\cat{C},\cat{D}}}\cat{C}(X_i, D').
+\cat{C}(C, D\monprod D')\cong\sum_{i\in I_{C,D}}\cat{C}(X_i, D').
 \]
 A \emph{right index-coclosure} for $\monprod$ is a functor $(J,Y)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, but this time with
 \[
-\cat{C}(C, D'\monprod D)\cong\sum_{j\in J_{\cat{C},\cat{D}}}\cat{C}(Y_j, D').
+\cat{C}(C, D'\monprod D)\cong\sum_{j\in J_{C,D}}\cat{C}(Y_j, D').
 \]
 \end{definition}
 
 \begin{example}[Cartesian monoidal categories have index coclosures]
-
+If $\cat{C}$ has finite products then it has a (left and right) index coclosure given by $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, where
+\[
+  I_{C,D}\coloneqq\{i\in\cat{C}(C,D)\}
+  \qqand
+  X_i\coloneqq C
+\]
+Indeed, we have
+\[
+\cat{C}(C, D\times D')\cong\cat{C}(C,D)\times\cat{C}(C,D')\cong\sum_{i\in \cat{C}(C,D)}\cat{C}(C, D').
+\qedhere
+\]
 \end{example}
 
-\begin{example}[Extensive categories have index coclosures]
-
+\begin{example}[Lextensive categories have index coclosures]
+Suppose that $\cat{C}$ is extensive and has a terminal object (e.g.\ if $\cat{C}$ is lextensive). Then it has a (left and right) index coclosure given by $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, where
+\[
+  I_{C,D}\coloneqq\{i\in\cat{C}(C,D+1)\}
+  \qqand
+  X_i\coloneqq i\inv(1)
+\]
+In other words, one can show that in an extensive category with terminal object $1$, we have
+\[
+\cat{C}(C, D+D')\cong\sum_{i\in \cat{C}(C,D+1)}\cat{C}\left(i\inv(1), D'\right).
+\qedhere
+\]
 \end{example}
+
+\begin{proposition}
+If $(\cat{C},I,\monprod)$ is right index coclosed, then $(\mn(\cat{C}),\ol{I},\ol{\monprod})$ is monoidal closed. 
+\end{proposition}
+\begin{proof}
+Let $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$ be the right index coclosure on $\cat{C}$. We will show that the closure $[-,-]$ on $\mn(\cat{C})$ is given by the formula
+\[
+	[(A,c),(B,d)]\coloneqq
+	\left(\prod_{a\in A}\sum_{b\in B}I(c(a),d(b))\,,\,(b,i)\mapsto\sum_{a\in A}X_{i(a)}\right)
+\]
+Indeed, we calculate
+\begin{align*}
+	\mn(\cat{C})((A',c')\ol{\monprod}(A,c),(B,d))&\cong
+	\prod_{a'\in A'}\prod_{a\in A}\sum_{b\in B}\cat{C}(d(b),c'(a')\monprod c(a))\\&\cong
+	d
+\end{align*}
+\end{proof}
 
 
 %---- Section ----%
