@@ -422,6 +422,7 @@ For the remainder of the paper, we fix a Grothendieck universe $U$ of sets; it w
 Let $\cat{C}$ be a category. The following categories are equivalent:
 \begin{enumerate}
 	\item the coproduct completion of $\cat{C}\op$,
+	\item the full subcategory of $\smset^\cat{C}$ spanned by coproducts of representables,
 	\item the opposite of the product completion of $\cat{C}$, and
 	\item the category whose objects are pairs $(A,c)$, where $A\in\smset$ and $c\colon A\to\cat{C}$, and for which
 	\begin{align*}
@@ -441,7 +442,7 @@ Indeed, there is an inclusion map $(A_i,c_i)\to (A,c)$, given by the coproduct i
 
 Given any other coproduct-complete category $\cat{D}$ equipped with a functor $F\colon\cat{C}\op\to\cat{D}$, there is a unique functor $\mn(\cat{C})\to\cat{D}$ commuting with $\eta$: it sends $(A,c)$ to the coproduct $\sum_{a\in A}F(c_a)$. We leave the details to the reader.
 
-It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. This completes the proof sketch.
+It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. It is well-known that to freely add $J$-shaped colimits to a small category $\cat{D}$ is to take the $J$-shaped colimits of representables in the presheaf category $\smset^{\cat{D}\op}$. This completes the proof sketch.
 \end{proof}
 
 The name \emph{menu category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\mn(\cat{C})$ consists of a menu of items in $\cat{C}$: one indicates a menu item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first menu: each menu item $a\in A$ is sent to some menu item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
@@ -621,6 +622,17 @@ In other words, one can show that in an extensive category with terminal object 
 \]
 \end{example}
 
+\begin{remark}
+Given a category $\cat{C}$, a monoidal operation $\monprod$ having a left (resp.\ right) index-coclosure is the same as each of the functors
+\[
+	(C\monprod -)\colon\cat{C}\to\cat{C}
+	\qquad\qquad\text{resp.\ } 
+  (-\monprod C)\colon\cat{C}\to\cat{C}
+\]
+having a left multiadjoint in the sense of \cite{Diers}. 
+
+\end{remark}
+
 \begin{proposition}
 If $(\cat{C},I,\monprod)$ is right index coclosed, then $(\mn(\cat{C}),\ol{I},\ol{\monprod})$ is monoidal closed. 
 \end{proposition}
@@ -638,6 +650,13 @@ Indeed, we calculate
 \end{align*}
 \end{proof}
 
+\begin{remark}
+In the proof of \cref{prop.limits_to_colimits} we implicitly used the fact that the free coproduct completion functor has a kind of 2-dimensional left multiadjoint, that
+\[
+\smcat(J,\Sigma\cat{C})\simeq\int^{A\colon J\to\smset}\cat{C}\left(\textstyle{\int}^{j:J}A_j,\cat{C}\op\right)
+\]
+where $\Sigma\cat{C}$ denotes its free coproduct cocompletion (so $\mn(\cat{C})=\Sigma(\cat{C}\op)$), and where $\int^{x:X}Y_x$ denotes the category of elements of a functor $Y\colon X\to\smset$.
+\end{remark}
 
 %---- Section ----%
 \section{Coclosures}
