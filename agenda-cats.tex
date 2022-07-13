@@ -225,6 +225,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\id}{\mathrm{id}}
 \newcommand{\then}{\mathbin{\fatsemi}}
 
+
 \newcommand{\cocolon}{:\!}
 
 
@@ -308,10 +309,13 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \newcommand{\ot}[2]{\,\mbox{${}_{#1}\otimes_{#2}$}\,}
 \newcommand{\ih}[4]{{}_{#1}[#2,#3]_{#4}}
 
+\newcommand{\olodot}{\mathbin{\ol{\odot}}}
+\newcommand{\olmonprod}{\mathbin{\ol{\monprod}}}
+
 \newcommand{\monprod}{\blacktriangleleft}
 
 \newcommand{\fd}{\Cat{FD}}
-\newcommand{\mn}{\reflectbox{$\Cat{F}$}}
+\newcommand{\opfam}{\Cat{maf}}
 \newcommand{\ddial}{\Cat{DDial}}
 
 
@@ -367,9 +371,9 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{menu category} construction, with the property that $\fd(\cat{C})\cong\mn(\mn(\cat{C}))$.
+Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{menu category} construction, with the property that $\fd(\cat{C})\cong\opfam(\opfam(\cat{C}))$.
 
-The menu category $\mn(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\mn(\cat{C})$ always has extensive coproducts; $\mn(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\mn(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\mn(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a substitution operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$. 
+The menu category $\opfam(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\opfam(\cat{C})$ always has extensive coproducts; $\opfam(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\opfam(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\opfam(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a substitution operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$. 
 
 From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc.  \\
 
@@ -382,23 +386,23 @@ From this laundry list of formal properties and the fact that the free object ca
 %-------- Chapter --------%
 \chapter{Introduction}
 
-For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\mn_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
+For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\opfam_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
 \[
-	\1\cong \mn_U(\0),\qquad
-	\smset_U\cong\mn_U(\1),\qquad
-	\poly_U\cong\mn_U(\smset_U).
+	\1\cong \opfam_U(\0),\qquad
+	\smset_U\cong\opfam_U(\1),\qquad
+	\poly_U\cong\opfam_U(\smset_U).
 \]
 It is not a 2-monad on $\smcat$, since it technically is of the form
 \[
-\mn\colon\smcat\co\to\smcat
+\opfam\colon\smcat\co\to\smcat
 \]
 however, applying it twice does result in a monad, namely the free $U$-distributive category on $\cat{C}$
 \[
-\fd_U(\cat{C})\cong\mn_U(\mn_U(\cat{C})).
+\fd_U(\cat{C})\cong\opfam_U(\opfam_U(\cat{C})).
 \]
 Here $\fd_U(\cat{C})$ has $U$-ary coproducts and $U$-ary products that distribute over them,%
 \footnote{The term \emph{distributive category} generally refers to a category where finite products distribute over finite coproducts. In $\fd_U(\cat{C})$, $U$-ary products distribute over $U$-ary coproducts, so it is often called \emph{completely distributive}. We will call it $U$-distributive.}
- and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\mn$ as a kind of ``square root'' of $\fd$. 
+ and it is the free such thing containing a copy of $\cat{C}$. In this way, we can very roughly think of $\opfam$ as a kind of ``square root'' of $\fd$. 
 
 It is well-known that $\poly_U$ is the free $U$-distributive category on a single object, i.e.\ $\poly\cong\fd(\1)$. By \cite{moss2018dialectica}, we have that the \emph{dependent dialectica category} is given by 
 \[\ddial\cong\fd_U(\Cat{2})\]
@@ -418,7 +422,7 @@ Free completions of categories have been well-studied; in particular, free copro
 
 For the remainder of the paper, we fix a Grothendieck universe $U$ of sets; it will be implicit. We call a set \emph{small} if it is in $\ol{u}$. The category $\smset$ denotes the category of small sets.
 
-\begin{proposition}
+\begin{proposition}\label{prop.tfae}
 Let $\cat{C}$ be a category. The following categories are equivalent:
 \begin{enumerate}
 	\item the coproduct completion of $\cat{C}\op$,
@@ -429,10 +433,10 @@ Let $\cat{C}$ be a category. The following categories are equivalent:
 	\Hom((A,c),(A',c'))&\coloneqq\prod_{a\in A}\sum_{a'\in A'}\cat{C}\big(c'(a'),c(a)\big)\\&\cong\left\{(f,\varphi)\;\middle|\; f\in\smset(A,A')\text{ and }\forall a\in A, \varphi(a)\in\cat{C}(c'(fa),c(a))\right\}.
 	\end{align*}
 \end{enumerate}
-We denote this category by $\mn(\cat{C})$.
+We denote this category by $\opfam(\cat{C})$.
 \end{proposition}
 \begin{proof}[Sketch of proof]
-We first show that $\mn(\cat{C})$ is a coproduct completion of $\cat{C}$. There is an obvious inclusion $\eta_\cat{C}\colon \cat{C}\op\to\mn(\cat{C})$ sending $c\mapsto (1,c)$. Given a set $I$ and objects $(A_i,c_i)_{i\in I}$, their coproduct $(A,c)\coloneqq\sum_{i\in I}(A_i,c_i)$ is given by
+We first show that $\opfam(\cat{C})$ is a coproduct completion of $\cat{C}$. There is an obvious inclusion $\eta_\cat{C}\colon \cat{C}\op\to\opfam(\cat{C})$ sending $c\mapsto (1,c)$. Given a set $I$ and objects $(A_i,c_i)_{i\in I}$, their coproduct $(A,c)\coloneqq\sum_{i\in I}(A_i,c_i)$ is given by
 \[
 A\coloneqq\sum_{i\in I}A_i
 \qqand
@@ -440,12 +444,12 @@ c(i,a)\coloneqq c_i(a).
 \]
 Indeed, there is an inclusion map $(A_i,c_i)\to (A,c)$, given by the coproduct inclusion of sets $A_i\to A$ and identities on the $\cat{C}$-values. Given any other $(B,d)$ and maps $(f_i,\varphi_i)\colon (A_i,c_i)\to(B,d)$, we can define $f\colon A\to B$ by the universal property and $\varphi_{i,a}\coloneqq\varphi_i(a)$ for each $(i,a)\in A$. This makes the appropriate diagrams commute and is unique as such.
 
-Given any other coproduct-complete category $\cat{D}$ equipped with a functor $F\colon\cat{C}\op\to\cat{D}$, there is a unique functor $\mn(\cat{C})\to\cat{D}$ commuting with $\eta$: it sends $(A,c)$ to the coproduct $\sum_{a\in A}F(c_a)$. We leave the details to the reader.
+Given any other coproduct-complete category $\cat{D}$ equipped with a functor $F\colon\cat{C}\op\to\cat{D}$, there is a unique functor $\opfam(\cat{C})\to\cat{D}$ commuting with $\eta$: it sends $(A,c)$ to the coproduct $\sum_{a\in A}F(c_a)$. We leave the details to the reader.
 
 It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. It is well-known that to freely add $J$-shaped colimits to a small category $\cat{D}$ is to take the $J$-shaped colimits of representables in the presheaf category $\smset^{\cat{D}\op}$. This completes the proof sketch.
 \end{proof}
 
-The name \emph{menu category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\mn(\cat{C})$ consists of a menu of items in $\cat{C}$: one indicates a menu item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first menu: each menu item $a\in A$ is sent to some menu item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
+The name \emph{menu category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\opfam(\cat{C})$ consists of a menu of items in $\cat{C}$: one indicates a menu item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first menu: each menu item $a\in A$ is sent to some menu item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
 \footnote{Here we use ``element'' of $c(a)$ in the sense of generalized element: a map into $c(a)$.}
 
 
@@ -454,16 +458,16 @@ The name \emph{menu category} is perhaps not ideal; we are quite open to it bein
 
 
 %-------- Chapter --------%
-\chapter{Categorical structures on $\mn(\cat{C})$}
+\chapter{Categorical structures on $\opfam(\cat{C})$}
 
 %---- Section ----%
 \section{Limits and colimits}
 
 \begin{proposition}\label{prop.colimits_to_limits}
-Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\mn(\cat{C})$ has limits of shape $J$.
+Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\opfam(\cat{C})$ has limits of shape $J$.
 \end{proposition}
 \begin{proof}
-	The category of sets has $J$-shaped limits. So suppose given a diagram $(A,c)\colon J\to \mn(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(\ol{A},\ol{c})$, where
+	The category of sets has $J$-shaped limits. So suppose given a diagram $(A,c)\colon J\to \opfam(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(\ol{A},\ol{c})$, where
 	\[
 	\ol{A}\coloneqq\lim_{j\in J}A_j
 	\qqand
@@ -475,10 +479,10 @@ Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\
 We have far less control of colimits.
 
 \begin{proposition}\label{prop.limits_to_colimits}
-If $\cat{C}$ has small limits, then $\mn(\cat{C})$ has small colimits.
+If $\cat{C}$ has small limits, then $\opfam(\cat{C})$ has small colimits.
 \end{proposition}
 \begin{proof}
-Let $J$ be a small category. A diagram $(A,c)\colon J\to \mn(\cat{C})$ can be identified with a functor $A\colon J\to \smset$ and a functor $c\colon \int^JA\to\cat{C}\op$ from its category of elements. Let $\ul{A}\coloneqq\colim_{j\in J}A_j$ and consider the solid-arrow diagram
+Let $J$ be a small category. A diagram $(A,c)\colon J\to \opfam(\cat{C})$ can be identified with a functor $A\colon J\to \smset$ and a functor $c\colon \int^JA\to\cat{C}\op$ from its category of elements. Let $\ul{A}\coloneqq\colim_{j\in J}A_j$ and consider the solid-arrow diagram
 \[
 \begin{tikzcd}
 	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
@@ -488,7 +492,7 @@ Let $J$ be a small category. A diagram $(A,c)\colon J\to \mn(\cat{C})$ can be id
 \]
 The vertical functor sends each object $(j,a)$ to its equivalence class in the colimit and each morphism to the corresponding identity; it is the universal map from the lax colimit of $A$ to the strict colimit of $A$. Define the dashed arrow $\ul{c}$ to be the left Kan extension, which exists because $\cat{C}\op$ has small colimits.
 
-Given an object $(A',c')\in\mn(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that commute for morphisms $j\to j'$ in $J$, we obtain the universal map $f\colon\ul{A}\to A'$. One checks that we then have the diagram (shown left), and hence, by definition of left Kan extension, a universal map (shown right), completing the proof:
+Given an object $(A',c')\in\opfam(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that commute for morphisms $j\to j'$ in $J$, we obtain the universal map $f\colon\ul{A}\to A'$. One checks that we then have the diagram (shown left), and hence, by definition of left Kan extension, a universal map (shown right), completing the proof:
 \[
 \begin{tikzcd}
 	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
@@ -510,7 +514,7 @@ Given an object $(A',c')\in\mn(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that com
 \section{Extensivity}
 
 \begin{proposition}
-For any $\cat{C}$, the category $\mn(\cat{C})$ is extensive.
+For any $\cat{C}$, the category $\opfam(\cat{C})$ is extensive.
 \end{proposition}
 \begin{proof}
 This was proven as \cite[Proposition 2.4]{carboni1993introduction}. The category of sets is extensive, so given a diagram
@@ -541,140 +545,182 @@ such that the top row is a coproduct, as desired.
 \section{Monoidal structures}
 
 \begin{proposition}
-The functor $\mn\colon(\smcat\co,\1,\times)\to(\smcat,\1,\times)$ is lax monoidal.
+The functor $\opfam\colon(\smcat\co,\1,\times)\to(\smcat,\1,\times)$ is lax monoidal.
 \end{proposition}
 \begin{proof}
 We first provide the laxators:
 \[
-  \eta\colon \1\to\mn(\1)
+  \eta\colon \1\to\opfam(\1)
   \qqand
-  \mu_{\cat{C},\cat{D}}\colon\mn(\cat{C})\times\mn(\cat{D})\to\mn(\cat{C}\times\cat{D}).
+  \mu_{\cat{C},\cat{D}}\colon\opfam(\cat{C})\times\opfam(\cat{D})\to\opfam(\cat{C}\times\cat{D}).
 \]
-for any categories $\cat{C},\cat{D}$. The functor $\eta$ picks out the object $(1,1)\in\mn(\1)$, where the first coordinate indicates a one-element set and the second coordinate indicates the unique object of $\1$. The functor $\mu$ is given by
+for any categories $\cat{C},\cat{D}$. The functor $\eta$ picks out the object $(1,1)\in\opfam(\1)$, where the first coordinate indicates a one-element set and the second coordinate indicates the unique object of $\1$. The functor $\mu$ is given by
 \[
 \mu((A,c),(B,d))\mapsto(A\times B, \pair{c,d})
 \]
 where $\pair{c,d}(a,b)=(c(a),d(b))\in\cat{C}\times\cat{D}$. The map $\mu$ is a strict 2-natural, meaning that given $F\colon\cat{C}\to\cat{C}'$ and $G\colon\cat{D}\to\cat{D}'$, the diagram
 \[
 \begin{tikzcd}[column sep=large]
-	\mn(\cat{C})\times\mn(\cat{D})\ar[r, "\mu_{\cat{C},\cat{D}}"]\ar[d, "\mn(F)\times\mn(G)"']&
-	\mn(\cat{C}\times\cat{D})\ar[d, "\mn(F\times G)"]\\
-	\mn(\cat{C}')\times\mn(\cat{D}')\ar[r, "\mu_{\cat{C'},\cat{D'}}"']&
-	\mn(\cat{C}'\times\cat{D}')
+	\opfam(\cat{C})\times\opfam(\cat{D})\ar[r, "\mu_{\cat{C},\cat{D}}"]\ar[d, "\opfam(F)\times\opfam(G)"']&
+	\opfam(\cat{C}\times\cat{D})\ar[d, "\opfam(F\times G)"]\\
+	\opfam(\cat{C}')\times\opfam(\cat{D}')\ar[r, "\mu_{\cat{C'},\cat{D'}}"']&
+	\opfam(\cat{C}'\times\cat{D}')
 \end{tikzcd}
 \]
 commutes strictly. It is easy to see that $\eta$ and $\mu$ are unital and associative as desired.
 \end{proof}
 
 \begin{corollary}\label{cor.induced_monoidal}
-The functor $\mn$ sends pseudomonoids to pseudomonoids. In other words, for any monoidal structure $(I,\odot)$ on $\cat{C}$, we have an induced monoidal structure $(\ol{I},\ol{\odot})$ on $\mn(\cat{C})$.
+The functor $\opfam$ sends pseudomonoids to pseudomonoids. In other words, for any monoidal structure $(I,\odot)$ on $\cat{C}$, we have an induced monoidal structure $(\ol{I},\olodot)$ on $\opfam(\cat{C})$.
 \end{corollary}
 
-To be explicit, the induced monoidal structure on $\mn(\cat{C})$, as in \cref{cor.induced_monoidal}, is given by
+To be explicit, the induced monoidal structure on $\opfam(\cat{C})$, as in \cref{cor.induced_monoidal}, is given by
 \[
-\ol{I}\coloneqq\eta\then\mn(I)
+\ol{I}\coloneqq\eta\then\opfam(I)
 \qqand
-\ol{\odot}\coloneqq\mu_{\cat{C},\cat{C}}\then\mn(\odot)
+\olodot\coloneqq\mu_{\cat{C},\cat{C}}\then\opfam(\odot)
 \]
-Recall from \cref{prop.colimits_to_limits} that if $\cat{C}$ has finite coproducts, then $\mn(\cat{C})$ has finite products. In the notation of \cref{cor.induced_monoidal}, we have $1=\ol{0}$ and $\times=\ol{+}$.
-
+Recall from \cref{prop.colimits_to_limits} that if $\cat{C}$ has finite coproducts, then $\opfam(\cat{C})$ has finite products. In the notation of \cref{cor.induced_monoidal}, we have $1=\ol{0}$ and $\times=\ol{+}$.
 
 \begin{proposition}
-Given a monoidal category $(\cat{C},I,\odot)$, the induced monoidal structure $(\ol{I},\ol{\odot})$ on $\mn(\cat{C})\ss\smset^\cat{C}$ is the restriction of the Day convolution monoidal structure on $\smset^{\cat{C}}$.
+Given a monoidal category $(\cat{C},I,\odot)$, the induced monoidal structure $(\ol{I},\olodot)$ on $\opfam(\cat{C})$ is the restriction, along the inclusion $\opfam(\cat{C})\ss\smset^\cat{C}$ from \cref{prop.tfae}, of the Day convolution monoidal structure on $\smset^{\cat{C}}$.
 \end{proposition}
 \begin{proof}
-**Calculate with coends**
+Since units are unique up to isomorphism, it suffices to show that the Day convolution of $\odot$ is $\olodot$. The Day convolution of functors $F_1,F_2\colon\cat{C}\to\smset$ is given by the left Kan extension
+\[
+\begin{tikzcd}
+  \cat{C}\times\cat{C}\ar[r, "F_1\times F_2"]\ar[d, "\odot"']\ar[dr, phantom, pos=.4, "\Downarrow"]&[10pt]
+  \smset\times\smset\ar[r, "{(\times)}"]&
+  \smset\\
+  \cat{C}\ar[urr, bend right=10pt, "{\Fun{Day}(\odot)(F_1,F_2)}"']&~
+\end{tikzcd}
+\]
+and hence given by the coend formula
+\[
+\Fun{Day}(\odot)(F_1,F_2)(c)=\int^{(d_1,d_2)\in\cat{C}\times\cat{C}}\cat{C}(d_1\odot d_2,c)\times F_1(d_1)\times F_2(d_2).
+\]
+If, for $i=1,2$, the functor $F_i$ arises from the inclusion $\opfam(\cat{C})\ss\smset^\cat{C}$ then there is a set $A_i$ and a functor $c_i\colon A_i\to\cat{C}$ such that $F_i=\sum_{a_i\in A_i}\yon^{c_i(a_i)}$. Thus we calculate
+\begin{align*}
+	\Fun{Day}(\odot)(F_1,F_2)(c)&\cong
+	\int^{(d_1,d_2)\in\cat{C}\times\cat{C}}\cat{C}(d_1\odot d_2,c)\times \sum_{a_1\in A_1}\cat{C}(c_1(a_1), d_1)\times \sum_{a_2\in A_2}\cat{C}(c_2(a_2), d_2)\\&\cong
+	\sum_{a_1\in A_1}\sum_{a_2\in A_2}\int^{(d_1,d_2)\in\cat{C}\times\cat{C}}\cat{C}(d_1\odot d_2,c)\times\cat{C}(c_1(a_1), d_1)\times\cat{C}(c_2(a_2), d_2)\\&\cong
+	\sum_{a_1\in A_1}\sum_{a_2\in A_2}\int^{d_1\in\cat{C}}\cat{C}(c_1(a_1), d_1)\times\int^{d_2\in\cat{C}}\cat{C}(d_1\odot d_2,c)\times\cat{C}(c_2(a_2), d_2)\\&\cong
+	\sum_{a_1\in A_1}\sum_{a_2\in A_2}\int^{d_1\in\cat{C}}\cat{C}(c_1(a_1), d_1)\times\cat{C}(d_1\odot c_2(a_2),c)\\&\cong
+	\sum_{a_1\in A_1}\sum_{a_2\in A_2}\cat{C}(c_1(a_1)\odot c_2(a_2),c)\\&\cong
+	(F_1\olodot F_2)(c)
+\end{align*}
+This completes the proof.
 \end{proof}
 
 %---- Section ----%
-\section{Closures}
+\section{Closures and coclosures}
 
 
 \begin{definition}
-Given a monoidal product $\monprod$ on $\cat{C}$, a \emph{left index-coclosure} for $\monprod$ consists of a functor $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$ with the property that for all $C,D',D\in\cat{C}$, we have
+Given a monoidal product $\monprod$ on $\cat{C}$, a \emph{left index-coclosure} for $\monprod$ consists of a functor $(I,u)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$ with the property that for all $c,d',d\in\cat{C}$, we have
 \[
-\cat{C}(C, D\monprod D')\cong\sum_{i\in I_{C,D}}\cat{C}(X_i, D').
+\cat{C}(c, d\monprod d')\cong\sum_{i\in I_{c,d}}\cat{C}(u_i, d').
 \]
-A \emph{right index-coclosure} for $\monprod$ is a functor $(J,Y)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, but this time with
+A \emph{right index-coclosure} for $\monprod$ is a functor $(J,v)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$, but this time with
 \[
-\cat{C}(C, D'\monprod D)\cong\sum_{j\in J_{C,D}}\cat{C}(Y_j, D').
+\cat{C}(c, d'\monprod d)\cong\sum_{j\in J_{c,d}}\cat{C}(v_j, d').
+\qedhere
 \]
 \end{definition}
 
 \begin{example}[Cartesian monoidal categories have index coclosures]
-If $\cat{C}$ has finite products then it has a (left and right) index coclosure given by $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, where
+If $\cat{C}$ has finite products then it has a (left and right) index coclosure given by $(I,u)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$, where
 \[
-  I_{C,D}\coloneqq\{i\in\cat{C}(C,D)\}
+  I_{c,d}\coloneqq\{i\in\cat{C}(c,d)\}
   \qqand
-  X_i\coloneqq C
+  u_i\coloneqq c
 \]
 Indeed, we have
 \[
-\cat{C}(C, D\times D')\cong\cat{C}(C,D)\times\cat{C}(C,D')\cong\sum_{i\in \cat{C}(C,D)}\cat{C}(C, D').
+\cat{C}(c, d\times d')\cong\cat{C}(c,d)\times\cat{C}(c,d')\cong\sum_{i\in \cat{C}(c,d)}\cat{C}(c, d').
 \qedhere
 \]
 \end{example}
 
 \begin{example}[Lextensive categories have index coclosures]
-Suppose that $\cat{C}$ is extensive and has a terminal object (e.g.\ if $\cat{C}$ is lextensive). Then it has a (left and right) index coclosure given by $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$, where
+Suppose that $\cat{C}$ is extensive and has a terminal object (e.g.\ if $\cat{C}$ is lextensive). Then it has a (left and right) index coclosure given by $(I,u)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$, where
 \[
-  I_{C,D}\coloneqq\{i\in\cat{C}(C,D+1)\}
+  I_{c,d}\coloneqq\{i\in\cat{C}(c,d+1)\}
   \qqand
-  X_i\coloneqq i\inv(1)
+  u_i\coloneqq i\inv(1)
 \]
 In other words, one can show that in an extensive category with terminal object $1$, we have
 \[
-\cat{C}(C, D+D')\cong\sum_{i\in \cat{C}(C,D+1)}\cat{C}\left(i\inv(1), D'\right).
+\cat{C}(c, d+d')\cong\sum_{i\in \cat{C}(c,d+1)}\cat{C}\left(i\inv(1), d'\right).
 \qedhere
 \]
 \end{example}
 
 \begin{remark}
-Given a category $\cat{C}$, a monoidal operation $\monprod$ having a left (resp.\ right) index-coclosure is the same as each of the functors
+Given a category $\cat{C}$, a monoidal operation $\monprod$ having a left (resp.\ right) index-coclosure is the same as the functor
 \[
-	(C\monprod -)\colon\cat{C}\to\cat{C}
+	(c\monprod -)\colon\cat{C}\to\cat{C}
 	\qquad\qquad\text{resp.\ } 
-  (-\monprod C)\colon\cat{C}\to\cat{C}
+  (-\monprod c)\colon\cat{C}\to\cat{C}
 \]
-having a left multiadjoint in the sense of \cite{Diers}. 
+having a left multiadjoint in the sense of \cite{Diers}, for each $c\in\cat{C}$.
 
 \end{remark}
 
 \begin{proposition}
-If $(\cat{C},I,\monprod)$ is right index coclosed, then $(\mn(\cat{C}),\ol{I},\ol{\monprod})$ is monoidal closed. 
+If $\cat{C}$ has coproducts and $\monprod$ is left/right index coclosed, then $(\opfam(\cat{C}),\ol{I},\olmonprod)$ is monoidal left/right closed. 
 \end{proposition}
 \begin{proof}
-Let $(I,X)\colon\cat{C}\op\times\cat{C}\to\mn(\cat{C})$ be the right index coclosure on $\cat{C}$. We will show that the closure $[-,-]$ on $\mn(\cat{C})$ is given by the formula
+Let $(I,u)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$ be the left/right index coclosure on $\cat{C}$. We will show that the left/right closureon $\opfam(\cat{C})$ is given by the formula
 \[
-	[(A,c),(B,d)]\coloneqq
-	\left(\prod_{a\in A}\sum_{b\in B}I(c(a),d(b))\,,\,(b,i)\mapsto\sum_{a\in A}X_{i(a)}\right)
+	((A,c),(B,d))\mapsto
+	\left(\prod_{a\in A}\sum_{b\in B}I(d(b), c(a))\,,\,(b,i)\mapsto\bigsqcup_{a\in A}u_{i(a)}\right)
 \]
-Indeed, we calculate
+Indeed, for right closure we calculate
 \begin{align*}
-	\mn(\cat{C})((A',c')\ol{\monprod}(A,c),(B,d))&\cong
+	\opfam(\cat{C})((A',c')\olmonprod(A,c)\,,\,(B,d))&\cong
 	\prod_{a'\in A'}\prod_{a\in A}\sum_{b\in B}\cat{C}(d(b),c'(a')\monprod c(a))\\&\cong
-	d
-\end{align*}
+	\prod_{a'\in A'}\prod_{a\in A}\sum_{b\in B}\sum_{i\in I(d(b), c(a))}\cat{C}(u_i,c'(a'))\\&\cong
+	\prod_{a'\in A'}\;\sum_{(b,i)\in\prod_{a\in A}\sum_{b\in B}I(d(b),c(a))}\prod_{a\in A}\cat{C}(u_{i(a)},c'(a'))\\&\cong
+	\prod_{a'\in A'}\;\sum_{(b,i)\in\prod_{a\in A}\sum_{b\in B}I(d(b),c(a))}\cat{C}\left(\bigsqcup_{a\in A}u_{i(a)},c'(a')\right)\\&\cong
+	\opfam(\cat{C})\left((A',c')\,,\,\left(\prod_{a\in A}\sum_{b\in B}I(d(b),c(a))\,,\,(b,i)\mapsto\bigsqcup_{a\in A}u_{i(a)}\right)\right)
+	\end{align*}
+The left closure is similar.
 \end{proof}
 
-\begin{remark}
-In the proof of \cref{prop.limits_to_colimits} we implicitly used the fact that the free coproduct completion functor has a kind of 2-dimensional left multiadjoint, that
-\[
-\smcat(J,\Sigma\cat{C})\simeq\int^{A\colon J\to\smset}\cat{C}\left(\textstyle{\int}^{j:J}A_j,\cat{C}\op\right)
-\]
-where $\Sigma\cat{C}$ denotes its free coproduct cocompletion (so $\mn(\cat{C})=\Sigma(\cat{C}\op)$), and where $\int^{x:X}Y_x$ denotes the category of elements of a functor $Y\colon X\to\smset$.
-\end{remark}
+%\begin{remark}
+%In the proof of \cref{prop.limits_to_colimits} we implicitly used the fact that the free coproduct completion functor has a kind of 2-dimensional left multiadjoint, that
+%\[
+%\smcat(J,\Sigma\cat{C})\simeq\int^{A\colon J\to\smset}\cat{C}\left(\left(\textstyle{\int}^{j:J}A_j\right)\op,\cat{C}\right)
+%\]
+%where $\Sigma\cat{C}$ denotes its free coproduct cocompletion (so $\opfam(\cat{C})=\Sigma(\cat{C}\op)$), and where $\int^{x:X}Y_x$ denotes the category of elements of a functor $Y\colon X\to\smset$.
+%\end{remark}
 
-%---- Section ----%
-\section{Coclosures}
+\begin{proposition}
+If $(\cat{C},I,\monprod)$ is left/right closed then $(\opfam(\cat{C}),\ol{I},\olmonprod)$ is left/right index-coclosed.
+\end{proposition}
+\begin{proof}
+Suppose that $\monprod$ is left/right closed, and denote the corresponding internal hom by $[-,-]$. Then the left/right index-coclosure $\opfam(\cat{C})\op\times\opfam(\cat{C})\to\opfam(\opfam(\cat{C}))$ on $\opfam(\cat{C})$ is given by
+\[
+((A,c),(B,d))\mapsto**
+\]
+Indeed, for left index-coclosure we calculate
+\begin{align*}
+  \opfam(\cat{C})((A,c),(B,d)\olmonprod(B',d'))&\cong
+  \prod_{a\in A}\sum_{b\in B}\sum_{b'\in B'}\cat{C}(d(b)\monprod d'(b'), c(a))\\&\cong
+  \prod_{a\in A}\sum_{b\in B}\sum_{b'\in B'}\cat{C}(d'(b'), [d(b),c(a)])\\&\cong
+  \sum_{b\colon A\to B}\prod_{a\in A}\sum_{b'\in B'}\cat{C}(d'(b'), [d(b),c(a)])\\&\cong
+**
+\end{align*}
+\end{proof}
 
 \section{Cartesian closure and distributivity}
 
 \begin{proposition}
-Suppose that $\cat{C}$ is extensive and has a terminal object. Then $\mn(\cat{C})$ is Cartesian closed.
+Suppose that $\cat{C}$ is extensive and has a terminal object. Then $\opfam(\cat{C})$ is Cartesian closed.
 \end{proposition}
 \begin{proof}
-If $\cat{C}$ is extensive, it has finite coproducts. Hence $\mn(\cat{C})$ has finite products by \cref{prop.colimits_to_limits}; they are given by
+If $\cat{C}$ is extensive, it has finite coproducts. Hence $\opfam(\cat{C})$ has finite products by \cref{prop.colimits_to_limits}; they are given by
 \[
 (A,c)\times (A',c')\coloneqq\big(A\times A', (a,a')\mapsto c(a)+c'(a')\big).
 \]
@@ -685,7 +731,7 @@ Given $(A,c)$ and $(B,d)$, we define
 \end{proof}
 
 \begin{proposition}
-If $\cat{C}$ is extensive, then $\mn(\cat{C})$ is distributive.
+If $\cat{C}$ is extensive, then $\opfam(\cat{C})$ is distributive.
 \end{proposition}
 \begin{proof}
 
@@ -694,7 +740,7 @@ If $\cat{C}$ is extensive, then $\mn(\cat{C})$ is distributive.
 %-------- Chapter --------%
 \chapter{Categorical structures on $\fd(\cat{C})$}
 %---- Section ----%
-\section{Structures arising from $\fd=\mn\circ\mn$}
+\section{Structures arising from $\fd=\opfam\circ\opfam$}
 %---- Section ----%
 \section{The substitution product}
 
