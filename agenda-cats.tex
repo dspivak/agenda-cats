@@ -361,7 +361,7 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 %--------------- Document ---------------%
 \begin{document}
 
-\title{The root source of structures\\on $\poly$ and dependent dialectica
+\title{Opfam: the root source of structures\\on $\poly$ and dependent dialectica
 }
 
 \author{David I. Spivak}
@@ -371,9 +371,9 @@ replacement=\&]{}\ar[r,tick, "{#1}"]\&{}\end{tikzcd}}
 \maketitle
 
 \begin{abstract}
-Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{menu category} construction, with the property that $\fd(\cat{C})\cong\opfam(\opfam(\cat{C}))$.
+Both the category of polynomial functors and the dependent Dialectica category are extremely rich, and for the same reason: each emerges as the free distributive category on a simpler category, namely on the free object and the free arrow, respectively: $\poly=\fd(\bullet)$, $\ddial=\fd(\bullet\to\bullet)$. But in fact, the free distributive category construction has a kind of "square root": a simpler construction, which I'll call the \emph{opfam category} construction, with the property that $\fd(\cat{C})\cong\opfam(\opfam(\cat{C}))$.
 
-The menu category $\opfam(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\opfam(\cat{C})$ always has extensive coproducts; $\opfam(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\opfam(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\opfam(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a substitution operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$. 
+The opfam category $\opfam(\cat{C})$ is given by the free coproduct completion of $\cat{C}\op$ and as such enjoys excellent formal properties: $\opfam(\cat{C})$ always has extensive coproducts; $\opfam(\cat{C})$ has a distributive monoidal operation for every monoidal operation on $\cat{C}$; $\opfam(\cat{C})$ is complete/cocomplete if $\cat{C}$ is cocomplete/complete; $\opfam(\cat{C})$has monoidal closures/coclosures if $\cat{C}$ has monoidal coclosures/closures, etc. We can also define a substitution operation on $\fd(\cat{C})$ for any monoidal category $\cat{C}$. 
 
 From this laundry list of formal properties and the fact that the free object category $\bullet$ has exactly one of every categorical structure, we recover many known properties of $\poly$, $\Cat{DDial}$, etc. Focusing on $\poly$, we recover the usual operations $+$, $\times$, $\otimes$, $\tri$, as well as many if not all the known facts about $\times$ and $\otimes$ being monoidal closed, $\otimes$ and $\tri$ being coclosed, etc.  \\
 
@@ -386,7 +386,7 @@ From this laundry list of formal properties and the fact that the free object ca
 %-------- Chapter --------%
 \chapter{Introduction}
 
-For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{menu category} $\opfam_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
+For a fixed Grothendieck universe $U$, the ($U$-) coproduct completion of $\cat{C}\op$, which we'll call its \emph{opfam category} $\opfam_U(\cat{C})$, is a very rich construction. Applying it a few times successively to the empty category, one obtains:
 \[
 	\1\cong \opfam_U(\0),\qquad
 	\smset_U\cong\opfam_U(\1),\qquad
@@ -416,7 +416,7 @@ This material is based upon work supported by the Air Force Office of Scientific
 
 
 %-------- Chapter --------%
-\chapter{The menu construction}
+\chapter{The opfam construction}
 
 Free completions of categories have been well-studied; in particular, free coproduct completions of categories were a major theme in the recent paper \cite{adamek2020nice}. We have not seen explicit interest in the coproduct completion of the opposite category, but searching for this was difficult and our search may have been inadequate.
 
@@ -446,10 +446,10 @@ Indeed, there is an inclusion map $(A_i,c_i)\to (A,c)$, given by the coproduct i
 
 Given any other coproduct-complete category $\cat{D}$ equipped with a functor $F\colon\cat{C}\op\to\cat{D}$, there is a unique functor $\opfam(\cat{C})\to\cat{D}$ commuting with $\eta$: it sends $(A,c)$ to the coproduct $\sum_{a\in A}F(c_a)$. We leave the details to the reader.
 
-It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. It is well-known that to freely add $J$-shaped colimits to a small category $\cat{D}$ is to take the $J$-shaped colimits of representables in the presheaf category $\smset^{\cat{D}\op}$. This completes the proof sketch.
+It is clear the opposite of the product completion of $\cat{C}$ is equivalent to the coproduct completion of $\cat{C}\op$. It is well-known that to freely add $\cat{J}$-shaped colimits to a small category $\cat{D}$ is to take the $\cat{J}$-shaped colimits of representables in the presheaf category $\smset^{\cat{D}\op}$. This completes the proof sketch.
 \end{proof}
 
-The name \emph{menu category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\opfam(\cat{C})$ consists of a menu of items in $\cat{C}$: one indicates a menu item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first menu: each menu item $a\in A$ is sent to some menu item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
+The name \emph{opfam category} is perhaps not ideal; we are quite open to it being renamed. The idea is that an object in $\opfam(\cat{C})$ consists of a opfam of items in $\cat{C}$: one indicates a opfam item and looks to receive an object in $\cat{C}$. A morphism $(A,c)\to (A',c')$ is a method for fulfilling the first opfam: each opfam item $a\in A$ is sent to some opfam item $a'\in A'$, as well as a strategy $c'(a')\to c(a)$, meaning that if we receive an element of $c'(a')$, then we receive an element of $c(a)$.%
 \footnote{Here we use ``element'' of $c(a)$ in the sense of generalized element: a map into $c(a)$.}
 
 
@@ -464,16 +464,28 @@ The name \emph{menu category} is perhaps not ideal; we are quite open to it bein
 \section{Limits and colimits}
 
 \begin{proposition}\label{prop.colimits_to_limits}
-Suppose $J$ is a small category. If $\cat{C}$ has colimits of shape $J$, then $\opfam(\cat{C})$ has limits of shape $J$.
+Suppose $\cat{J}$ is a small category. If $\cat{C}$ has colimits of shape $\cat{J}$, then $\opfam(\cat{C})$ has limits of shape $\cat{J}$. 
 \end{proposition}
 \begin{proof}
-	The category of sets has $J$-shaped limits. So suppose given a diagram $(A,c)\colon J\to \opfam(\cat{C})$. Its limit is given by $\lim_{j\in J}(A_j,c_j)\coloneqq(\ol{A},\ol{c})$, where
+	The category of sets has $\cat{J}$-shaped limits. So suppose given a diagram $(A,c)\colon \cat{J}\to \opfam(\cat{C})$. Its limit is given by $\lim_{j\in \cat{J}}(A_j,c_j)\coloneqq(\ol{A},\ol{c})$, where
 	\[
-	\ol{A}\coloneqq\lim_{j\in J}A_j
+	\ol{A}\coloneqq\lim_{j\in \cat{J}}A_j
 	\qqand
-	\ol{c}(a)\coloneqq\colim_{j\in J}c_j(\pi_j(a))
+	\ol{c}(a)\coloneqq\colim_{j\in \cat{J}}c_j(\pi_j(a))
 	\]
 	Here, $\pi_j\colon \ol{A}\to A_j$ is the projection. It is easy to check that this is a limit.
+\end{proof}
+
+In fact, we can say more. For any functor $I\colon\cat{J}\to\smset$, let $\el(I)$ denote its category of elements.
+
+\begin{proposition}
+It $\cat{C}$ has colimits of shape $\cat{J}$ then $\cat{J}$-shaped limits distribute over coproducts in the following sense. For any functor $I\colon\cat{J}\to\smset$ and functor $x\colon\el(I)\to\opfam(\cat{C})$, there is an isomorphism
+\[
+\lim_{j\in J}\sum_{i\in I_j}x_{(j,i)}\cong\sum_{i\in\lim_{j\in J}I_j}\lim_{j\in \cat{J}}x_{j,i(j)}
+\]
+\end{proposition}
+\begin{proof}
+**
 \end{proof}
 
 We have far less control of colimits.
@@ -482,26 +494,26 @@ We have far less control of colimits.
 If $\cat{C}$ has small limits, then $\opfam(\cat{C})$ has small colimits.
 \end{proposition}
 \begin{proof}
-Let $J$ be a small category. A diagram $(A,c)\colon J\to \opfam(\cat{C})$ can be identified with a functor $A\colon J\to \smset$ and a functor $c\colon \int^JA\to\cat{C}\op$ from its category of elements. Let $\ul{A}\coloneqq\colim_{j\in J}A_j$ and consider the solid-arrow diagram
+Let $\cat{J}$ be a small category. A diagram $(A,c)\colon \cat{J}\to \opfam(\cat{C})$ can be identified with a functor $A\colon \cat{J}\to \smset$ and a functor $c\colon \int^\cat{J}A\to\cat{C}\op$ from its category of elements. Let $\ul{A}\coloneqq\colim_{j\in \cat{J}}A_j$ and consider the solid-arrow diagram
 \[
 \begin{tikzcd}
-	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\int^\cat{J}A\ar[r, "c"]\ar[d, "\pi"']&
 	\cat{C}\op\\
 	\ul{A}\ar[ur, bend right, dashed, "\ul{c}"']
 \end{tikzcd}
 \]
 The vertical functor sends each object $(j,a)$ to its equivalence class in the colimit and each morphism to the corresponding identity; it is the universal map from the lax colimit of $A$ to the strict colimit of $A$. Define the dashed arrow $\ul{c}$ to be the left Kan extension, which exists because $\cat{C}\op$ has small colimits.
 
-Given an object $(A',c')\in\opfam(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that commute for morphisms $j\to j'$ in $J$, we obtain the universal map $f\colon\ul{A}\to A'$. One checks that we then have the diagram (shown left), and hence, by definition of left Kan extension, a universal map (shown right), completing the proof:
+Given an object $(A',c')\in\opfam(\cat{C})$ and maps $(A_j,c_j)\to(A',c')$ that commute for morphisms $j\to j'$ in $\cat{J}$, we obtain the universal map $f\colon\ul{A}\to A'$. One checks that we then have the diagram (shown left), and hence, by definition of left Kan extension, a universal map (shown right), completing the proof:
 \[
 \begin{tikzcd}
-	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\int^\cat{J}A\ar[r, "c"]\ar[d, "\pi"']&
 	\cat{C}\op\\
 	\ul{A}\ar[r, "f"']&A'\ar[u, "c'"']\ar[ul, phantom, pos=.6, "\Downarrow"]
 \end{tikzcd}
 \hspace{.6in}
 \begin{tikzcd}
-	\int^JA\ar[r, "c"]\ar[d, "\pi"']&
+	\int^\cat{J}A\ar[r, "c"]\ar[d, "\pi"']&
 	\cat{C}\op\\
 	\ul{A}\ar[r, "f"']\ar[ur, "\ul{c}" description]&A'\ar[u, "c'"']
 	\ar[ul, phantom, pos=.2, "\Downarrow"]\ar[ul, phantom, pos=.85, "\Downarrow"]
@@ -621,9 +633,9 @@ Given a monoidal product $\monprod$ on $\cat{C}$, a \emph{left index-coclosure} 
 \[
 \cat{C}(c, d\monprod d')\cong\sum_{i\in I_{c,d}}\cat{C}(u_i, d').
 \]
-A \emph{right index-coclosure} for $\monprod$ is a functor $(J,v)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$, but this time with
+A \emph{right index-coclosure} for $\monprod$ is a functor $(\cat{J},v)\colon\cat{C}\op\times\cat{C}\to\opfam(\cat{C})$, but this time with
 \[
-\cat{C}(c, d'\monprod d)\cong\sum_{j\in J_{c,d}}\cat{C}(v_j, d').
+\cat{C}(c, d'\monprod d)\cong\sum_{j\in \cat{J}_{c,d}}\cat{C}(v_j, d').
 \qedhere
 \]
 \end{definition}
@@ -691,7 +703,7 @@ The left closure is similar.
 %\begin{remark}
 %In the proof of \cref{prop.limits_to_colimits} we implicitly used the fact that the free coproduct completion functor has a kind of 2-dimensional left multiadjoint, that
 %\[
-%\smcat(J,\Sigma\cat{C})\simeq\int^{A\colon J\to\smset}\cat{C}\left(\left(\textstyle{\int}^{j:J}A_j\right)\op,\cat{C}\right)
+%\smcat(\cat{J},\Sigma\cat{C})\simeq\int^{A\colon \cat{J}\to\smset}\cat{C}\left(\left(\textstyle{\int}^{j:\cat{J}}A_j\right)\op,\cat{C}\right)
 %\]
 %where $\Sigma\cat{C}$ denotes its free coproduct cocompletion (so $\opfam(\cat{C})=\Sigma(\cat{C}\op)$), and where $\int^{x:X}Y_x$ denotes the category of elements of a functor $Y\colon X\to\smset$.
 %\end{remark}
@@ -747,7 +759,7 @@ If $\cat{C}$ is extensive, then $\opfam(\cat{C})$ is distributive.
 Learned from Nelson Niu.
 
 %---- Section ----%
-\section{The menu category construction in $\poly$}
+\section{The opfam category construction in $\poly$}
 
 
 
